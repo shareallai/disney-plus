@@ -1,5 +1,6 @@
 ---
 import { DEFAULT_LANG, LANGS, LANG_LABEL, LOCALE_BY_LANG } from '../lib/i18n';
+import GoogleVerification from '../components/GoogleVerification.astro';
 
 const rawBaseUrl = import.meta.env.BASE_URL;
 const baseUrl = rawBaseUrl.endsWith('/') ? rawBaseUrl : `${rawBaseUrl}/`;
@@ -18,6 +19,7 @@ alternates.push({ hrefLang: 'x-default', href: new URL(`${baseUrl}${DEFAULT_LANG
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <GoogleVerification />
     <title>Subscription Savings Lab</title>
     <meta name="description" content="Choose your preferred language: Chinese, English, or Japanese." />
     <link rel="canonical" href={canonical} />
