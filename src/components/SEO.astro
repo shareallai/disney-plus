@@ -6,6 +6,7 @@ interface Props {
   siteName?: string;
   locale?: string;
   image?: string;
+  twitterSite?: string;
   type?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
@@ -22,6 +23,7 @@ const {
   siteName = 'Subscription Savings Lab',
   locale = 'en',
   image,
+  twitterSite = '@shareallai',
   type = 'website',
   publishedTime,
   modifiedTime,
@@ -34,7 +36,9 @@ const {
 const canonicalUrl = new URL(canonical);
 const rawBaseUrl = import.meta.env.BASE_URL;
 const baseUrl = rawBaseUrl.endsWith('/') ? rawBaseUrl : `${rawBaseUrl}/`;
-const fallbackSocialImage = new URL(`${baseUrl}favicon.svg`, canonicalUrl.origin).toString();
+const fallbackBaseUrl =
+  canonicalUrl.hostname === 'shareallai.github.io' && baseUrl === '/' ? '/familypro/' : baseUrl;
+const fallbackSocialImage = new URL(`${fallbackBaseUrl}favicon.svg`, canonicalUrl.origin).toString();
 const socialImage = image ? new URL(image, canonical).toString() : fallbackSocialImage;
 ---
 
@@ -56,6 +60,7 @@ const socialImage = image ? new URL(image, canonical).toString() : fallbackSocia
 <meta property="og:image" content={socialImage} />
 
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={twitterSite} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImage} />
