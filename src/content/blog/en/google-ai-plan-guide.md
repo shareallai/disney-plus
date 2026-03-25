@@ -82,11 +82,12 @@ If you only want a one-line recommendation:
 | Flow | Yes | Yes, with higher access | Yes, with highest access |
 | Whisk | Yes | Yes, with higher access | Yes, with highest access |
 | Gemini in Gmail / Workspace | Yes, narrower scope | Yes, broader scope | Yes |
-| Search AI Mode / Deep Search | Yes | Yes, with higher access | Yes, with highest access |
+| Search AI Mode | Yes, with more access | Yes, with higher access | Yes, with highest access |
+| Deep Search in Search | Not clearly published as a separate Plus entitlement | Yes | Yes |
 | Jules | No | Yes | Yes, with the highest access |
 | Gemini CLI / Gemini Code Assist | No | Yes | Yes |
 | Google Antigravity | No | Yes | Yes, with the highest access |
-| Google Photos generative AI | Basic | Higher limits | Highest limits |
+| Google Photos generative AI | Not clearly documented | Higher limits | Highest limits |
 | Gemini in Chrome / Auto browse | No | Yes | Yes |
 | Project Mariner | No | No | Yes |
 | Project Genie | No | No | Yes |
@@ -127,7 +128,7 @@ There are also a few rules worth remembering:
 - AI credits refresh every **billing cycle** and **do not roll over**.
 - `Pro` and `Ultra` support extra top-up credit purchases. `Plus` does not.
 - Google's currently documented top-up packs are: `$25 = 2,500 credits`, `$50 = 5,000 credits`, and `$200 = 20,000 credits`.
-- Google also gives personal Google Accounts without a Google AI subscription a free baseline of **100 monthly AI credits** for some Whisk and Flow video creation.
+- Google also gives personal Google Accounts without a Google AI subscription a free baseline of **50 daily AI credits** for some Whisk and Flow video creation, refreshed each day.
 
 If video generation is the main reason you are paying:
 
@@ -269,17 +270,20 @@ The real value here is simple: Google is embedding Gemini directly into its own 
 
 Google AI plans do not just improve the Gemini app. They also upgrade what Search can do through AI Mode.
 
-That includes:
+The main thing to avoid overstating here is treating `AI Mode` and `Deep Search` as a perfectly identical entitlement across all tiers.
 
-- higher AI Mode access levels
-- `Deep Search`
-- some `agentic capabilities`
-- US-only `AI-powered calling for local businesses`
+The safer interpretation is:
+
+- `Plus`: more AI Mode access
+- `Pro / Ultra`: explicitly include `Deep Search`
+- `Pro / Ultra`: more clearly include some `agentic capabilities`
+- US-only `Pro / Ultra`: `AI-powered calling for local businesses`
 
 One of the clearest public hard limits Google publishes here is for image generation in AI Mode:
 
 - Non-subscribers: **100 images / 24 hours**
-- `Google AI Plus / Pro / Ultra`: **1,000 images / 24 hours**
+- `Google AI Pro / Ultra`: **1,000 images / 24 hours**
+- `Plus`: the plan page says "more access", but the current help page does not publish a separate fixed number the way it does for `Pro / Ultra`
 
 ### 4.7 Jules: A Coding Agent, Not Just A Completion Tool
 
@@ -339,6 +343,8 @@ The main capabilities here include:
 
 - `Photo to video`
 - `Remix`
+
+On the current official plan pages, Google explicitly documents these Google Photos AI benefits for `Pro` and `Ultra`; `Plus` is not clearly listed with a separate baseline.
 
 `Pro` and `Ultra` both raise access levels, and `Ultra` goes highest.
 
