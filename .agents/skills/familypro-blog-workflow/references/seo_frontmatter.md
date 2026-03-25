@@ -20,7 +20,7 @@ Use this reference when adjusting `title`, `headline`, `description`, `summary`,
 - Chinese `title`: 20-32 Han characters, hard cap 40
 - English/Japanese `title`: 45-65 characters, hard cap 70
 - Chinese `description`: 60-90 Han characters, hard cap 110
-- English/Japanese `description`: 120-160 characters, hard cap 180
+- English/Japanese `description`: 120-160 characters, hard cap 160
 
 Hard caps are mandatory. Treat anything over the cap as a bug that must be rewritten, not as an acceptable tradeoff.
 

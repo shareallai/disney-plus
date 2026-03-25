@@ -45,4 +45,4 @@ Use this reference when the user asks to review, audit, inspect, or sanity-check
 - The article treats a conditional fact as universal
 - Multilingual variants drift in meaning or over-translate
 - `title` and `h1` no longer describe the same page
-- English or Japanese `title` / `description` exceeds the documented hard cap
+- English or Japanese `title` exceeds 70 characters, or `description` exceeds 160 characters
