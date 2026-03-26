@@ -253,6 +253,17 @@ const sitemapHref = `${baseUrl}sitemap-index.xml`;
     border-bottom: 0;
   }
 
+  :global(pre.astro-code) {
+    border: 1px solid #1f2937;
+    border-radius: 0.9rem;
+    padding: 1rem;
+  }
+
+  :global(pre.astro-code span[style*="#6A737D"]),
+  :global(pre.astro-code span[style*="#6a737d"]) {
+    color: #9aa4b2 !important;
+  }
+
   @media (max-width: 720px) {
     .content {
       padding-top: 1.4rem;
