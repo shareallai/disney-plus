@@ -140,37 +140,39 @@ const jsonLd = {
   tags={post.data.tags}
   jsonLd={jsonLd}
 >
-  <article class={shouldShowToc ? 'article-with-toc' : undefined}>
-    <header class="article-header">
-      <p class="category">{post.data.category}</p>
-      <p class="meta">{metaParts.join(' · ')}</p>
-      <h1>{visibleHeadline}</h1>
-      <p class="desc">{post.data.summary}</p>
-    </header>
+  <article>
+    <div class={`article-layout${shouldShowToc ? ' article-layout-with-toc' : ''}`}>
+      <div class="article-content">
+        <header class="article-header">
+          <p class="category">{post.data.category}</p>
+          <p class="meta">{metaParts.join(' · ')}</p>
+          <h1>{visibleHeadline}</h1>
+          <p class="desc">{post.data.summary}</p>
+        </header>
 
-    {coverImageSrc && <img class="cover-image" src={coverImageSrc} alt={post.data.title} />}
+        {coverImageSrc && <img class="cover-image" src={coverImageSrc} alt={post.data.title} />}
 
-    <div class={`article-shell${shouldShowToc ? ' article-shell-with-toc' : ''}`}>
-      {shouldShowToc && (
-        <details class="toc-mobile">
-          <summary class="toc-mobile-summary">{ui.tableOfContents}</summary>
-          <nav aria-label={ui.tableOfContents}>
-            <ul class="toc-list">
-              {tocH2Headings.map((heading) => (
-                <li class="toc-section">
-                  <a class="toc-link toc-link-h2" data-toc-link data-target={heading.slug} href={`#${heading.slug}`}>
-                    {heading.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </details>
-      )}
+        {shouldShowToc && (
+          <details class="toc-mobile">
+            <summary class="toc-mobile-summary">{ui.tableOfContents}</summary>
+            <nav aria-label={ui.tableOfContents}>
+              <ul class="toc-list">
+                {tocH2Headings.map((heading) => (
+                  <li class="toc-section">
+                    <a class="toc-link toc-link-h2" data-toc-link data-target={heading.slug} href={`#${heading.slug}`}>
+                      {heading.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </details>
+        )}
 
-      <section class="markdown-body article-main">
-        <Content />
-      </section>
+        <section class="markdown-body article-main">
+          <Content />
+        </section>
+      </div>
 
       {shouldShowToc && (
         <aside class="toc-card toc-desktop" aria-labelledby="toc-title-desktop">
@@ -301,10 +303,14 @@ const jsonLd = {
     max-width: 100%;
   }
 
-  .article-shell {
+  .article-layout {
     display: grid;
     gap: 1rem;
     align-items: start;
+  }
+
+  .article-content {
+    min-width: 0;
   }
 
   .article-main {
@@ -442,21 +448,24 @@ const jsonLd = {
       width: min(1240px, 94vw);
     }
 
-    .article-with-toc .article-header,
-    .article-with-toc .cover-image {
-      width: calc(100% - 290px - 1.5rem);
-    }
-
-    .article-shell-with-toc {
+    .article-layout-with-toc {
       grid-template-columns: minmax(0, 1fr) 290px;
       column-gap: 1.5rem;
+    }
+
+    .article-layout-with-toc > .article-content {
+      grid-column: 1;
+      min-width: 0;
     }
 
     .toc-mobile {
       display: none;
     }
 
-    .toc-desktop {
+    .article-layout-with-toc > .toc-desktop {
+      grid-column: 2;
+      align-self: start;
+      width: 100%;
       display: block;
       position: sticky;
       top: 6.4rem;
