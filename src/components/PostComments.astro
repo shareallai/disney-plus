@@ -1,0 +1,61 @@
+---
+interface Props {
+  term: string;
+  lang: string;
+}
+
+const { term, lang } = Astro.props as Props;
+
+const repository = import.meta.env.GITHUB_REPOSITORY?.trim() ?? '';
+const repoId = import.meta.env.PUBLIC_GISCUS_REPO_ID?.trim() ?? '';
+const category = import.meta.env.PUBLIC_GISCUS_CATEGORY?.trim() ?? '';
+const categoryId = import.meta.env.PUBLIC_GISCUS_CATEGORY_ID?.trim() ?? '';
+
+const giscusLang = (() => {
+  if (lang === 'zh') return 'zh-CN';
+  if (lang === 'ja') return 'ja';
+  return 'en';
+})();
+
+const isConfigured = Boolean(repository && repoId && category && categoryId && term);
+---
+
+{
+  isConfigured && (
+    <section class="post-comments" aria-label="Comments">
+      <script
+        src="https://giscus.app/client.js"
+        data-repo={repository}
+        data-repo-id={repoId}
+        data-category={category}
+        data-category-id={categoryId}
+        data-mapping="specific"
+        data-term={term}
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-loading="lazy"
+        data-theme="preferred_color_scheme"
+        data-lang={giscusLang}
+        crossorigin="anonymous"
+        async
+      ></script>
+    </section>
+  )
+}
+
+<style>
+  .post-comments {
+    margin-top: 1.2rem;
+    padding: 0.9rem;
+    border: 1px solid #dbe5ef;
+    border-radius: 1rem;
+    background: #ffffff;
+  }
+
+  .post-comments :global(.giscus),
+  .post-comments :global(.giscus-frame) {
+    width: 100%;
+  }
+</style>

@@ -46,6 +46,9 @@ cp .env.example .env
 
 - `GITHUB_REPOSITORY=shareallai/familypro`
 - `PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX`（可选，用于 GA 验证）
+- `PUBLIC_GISCUS_REPO_ID=...`（必填，来自 giscus 配置页）
+- `PUBLIC_GISCUS_CATEGORY=Announcements`（必填，建议公告分类）
+- `PUBLIC_GISCUS_CATEGORY_ID=...`（必填，来自 giscus 配置页）
 
 ## 部署前需要修改
 

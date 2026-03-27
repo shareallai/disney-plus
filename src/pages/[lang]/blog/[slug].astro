@@ -1,6 +1,7 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PostComments from '../../../components/PostComments.astro';
 import {
   DEFAULT_LANG,
   collectSiteLangs,
@@ -172,6 +173,8 @@ const jsonLd = {
         <section class="markdown-body article-main">
           <Content />
         </section>
+
+        <PostComments term={post.data.translationKey} lang={currentLang} />
       </div>
 
       {shouldShowToc && (
