@@ -140,24 +140,42 @@ const jsonLd = {
   tags={post.data.tags}
   jsonLd={jsonLd}
 >
-  <article>
-    <div class={`article-layout${shouldShowToc ? ' article-layout-with-toc' : ''}`}>
-      <header class="article-header">
-        <p class="category">{post.data.category}</p>
-        <p class="meta">{metaParts.join(' · ')}</p>
-        <h1>{visibleHeadline}</h1>
-        <p class="desc">{post.data.summary}</p>
-      </header>
+  <article class={shouldShowToc ? 'article-with-toc' : undefined}>
+    <header class="article-header">
+      <p class="category">{post.data.category}</p>
+      <p class="meta">{metaParts.join(' · ')}</p>
+      <h1>{visibleHeadline}</h1>
+      <p class="desc">{post.data.summary}</p>
+    </header>
 
-      {coverImageSrc && <img class="cover-image" src={coverImageSrc} alt={post.data.title} />}
+    {coverImageSrc && <img class="cover-image" src={coverImageSrc} alt={post.data.title} />}
+
+    <div class={`article-shell${shouldShowToc ? ' article-shell-with-toc' : ''}`}>
+      {shouldShowToc && (
+        <details class="toc-mobile">
+          <summary class="toc-mobile-summary">{ui.tableOfContents}</summary>
+          <nav aria-label={ui.tableOfContents}>
+            <ul class="toc-list">
+              {tocH2Headings.map((heading) => (
+                <li class="toc-section">
+                  <a class="toc-link toc-link-h2" data-toc-link data-target={heading.slug} href={`#${heading.slug}`}>
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </details>
+      )}
+
+      <section class="markdown-body article-main">
+        <Content />
+      </section>
 
       {shouldShowToc && (
-        <aside class="toc-card toc-rail" aria-labelledby="toc-title">
-          <button class="toc-toggle" type="button" aria-controls="toc-nav" aria-expanded="false">
-            <span id="toc-title" class="toc-title">{ui.tableOfContents}</span>
-            <span class="toc-toggle-icon" aria-hidden="true">+</span>
-          </button>
-          <nav id="toc-nav" class="toc-panel" aria-label={ui.tableOfContents}>
+        <aside class="toc-card toc-desktop" aria-labelledby="toc-title-desktop">
+          <p id="toc-title-desktop" class="toc-title">{ui.tableOfContents}</p>
+          <nav aria-label={ui.tableOfContents}>
             <ul class="toc-list">
               {tocH2Headings.map((heading) => (
                 <li class="toc-section">
@@ -170,110 +188,74 @@ const jsonLd = {
           </nav>
         </aside>
       )}
-
-      <section class="markdown-body article-main">
-        <Content />
-      </section>
     </div>
   </article>
 </BaseLayout>
 
-{shouldShowToc && (
-  <script is:inline>
-    (() => {
-      const tocRail = document.querySelector('.toc-rail');
-      const tocToggle = tocRail?.querySelector('.toc-toggle');
-      const tocToggleIcon = tocRail?.querySelector('.toc-toggle-icon');
-      const tocLinks = Array.from(document.querySelectorAll('.toc-rail [data-toc-link]'));
-      const headingNodes = Array.from(document.querySelectorAll('.article-main h2[id]'));
-      if (!tocRail || !tocToggle || !tocLinks.length || !headingNodes.length) return;
+<script is:inline>
+  (() => {
+    const headingNodes = Array.from(document.querySelectorAll('.article-main h2[id]'));
+    const tocLinks = Array.from(document.querySelectorAll('[data-toc-link]'));
+    if (!headingNodes.length || !tocLinks.length) return;
 
-      document.documentElement.classList.add('has-toc-js');
+    const linksById = new Map();
+    for (const link of tocLinks) {
+      const id = link.getAttribute('data-target');
+      if (!id) continue;
+      const group = linksById.get(id) ?? [];
+      group.push(link);
+      linksById.set(id, group);
+    }
 
-      const setExpanded = (expanded) => {
-        tocRail.classList.toggle('is-open', expanded);
-        tocToggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-        if (tocToggleIcon) {
-          tocToggleIcon.textContent = expanded ? '-' : '+';
-        }
-      };
-
-      const setActive = (activeId) => {
-        for (const link of tocLinks) {
-          const target = link.getAttribute('data-target');
-          const isActive = Boolean(activeId && target === activeId);
-          link.classList.toggle('is-active', isActive);
-          if (isActive) {
-            link.setAttribute('aria-current', 'true');
-          } else {
-            link.removeAttribute('aria-current');
-          }
-        }
-      };
-
-      const updateActiveHeading = () => {
-        let activeId = headingNodes[0]?.id;
-        for (const heading of headingNodes) {
-          if (heading.getBoundingClientRect().top <= 140) {
-            activeId = heading.id;
-          } else {
-            break;
-          }
-        }
-        if (activeId) {
-          setActive(activeId);
-        }
-      };
-
-      setExpanded(false);
-      tocToggle.addEventListener('click', () => {
-        setExpanded(!tocRail.classList.contains('is-open'));
-      });
-
+    const setActive = (activeId) => {
       for (const link of tocLinks) {
-        link.addEventListener('click', () => {
-          if (window.matchMedia('(max-width: 979px)').matches) {
-            setExpanded(false);
-          }
-        });
-      }
-
-      const hashId = decodeURIComponent(window.location.hash.replace('#', ''));
-      if (hashId && headingNodes.some((heading) => heading.id === hashId)) {
-        setActive(hashId);
-      } else {
-        updateActiveHeading();
-      }
-
-      if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver(
-          () => {
-            updateActiveHeading();
-          },
-          {
-            rootMargin: '-24% 0px -62% 0px',
-            threshold: [0, 1],
-          },
-        );
-
-        for (const heading of headingNodes) {
-          observer.observe(heading);
-        }
-      } else {
-        window.addEventListener('scroll', updateActiveHeading, { passive: true });
-      }
-
-      window.addEventListener('hashchange', () => {
-        const nextId = decodeURIComponent(window.location.hash.replace('#', ''));
-        if (nextId && headingNodes.some((heading) => heading.id === nextId)) {
-          setActive(nextId);
+        const target = link.getAttribute('data-target');
+        const isActive = Boolean(activeId && target === activeId);
+        link.classList.toggle('is-active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
         } else {
-          updateActiveHeading();
+          link.removeAttribute('aria-current');
         }
-      });
-    })();
-  </script>
-)}
+      }
+    };
+
+    const hashId = decodeURIComponent(window.location.hash.replace('#', ''));
+    if (hashId && linksById.has(hashId)) {
+      setActive(hashId);
+    } else if (headingNodes[0]) {
+      setActive(headingNodes[0].id);
+    }
+
+    if (!('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) {
+          setActive(visible[0].target.id);
+        }
+      },
+      {
+        rootMargin: '-24% 0px -62% 0px',
+        threshold: [0, 1],
+      },
+    );
+
+    for (const heading of headingNodes) {
+      observer.observe(heading);
+    }
+
+    window.addEventListener('hashchange', () => {
+      const nextId = decodeURIComponent(window.location.hash.replace('#', ''));
+      if (nextId && linksById.has(nextId)) {
+        setActive(nextId);
+      }
+    });
+  })();
+</script>
 
 <style>
   .article-header {
@@ -319,7 +301,7 @@ const jsonLd = {
     max-width: 100%;
   }
 
-  .article-layout {
+  .article-shell {
     display: grid;
     gap: 1rem;
     align-items: start;
@@ -349,7 +331,41 @@ const jsonLd = {
     overflow-wrap: anywhere;
   }
 
-  .toc-rail {
+  .toc-mobile {
+    background: #f8fafc;
+    border: 1px solid #dbe5ef;
+    border-radius: 1rem;
+  }
+
+  .toc-mobile-summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 0.88rem 0.9rem;
+    margin: 0;
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 700;
+  }
+
+  .toc-mobile-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .toc-mobile-summary::after {
+    content: '+';
+    float: right;
+    color: #0f766e;
+  }
+
+  .toc-mobile[open] .toc-mobile-summary::after {
+    content: '−';
+  }
+
+  .toc-mobile nav {
+    padding: 0 0.9rem 0.9rem;
+  }
+
+  .toc-card {
     background: #f8fafc;
     border: 1px solid #dbe5ef;
     border-radius: 1rem;
@@ -357,42 +373,16 @@ const jsonLd = {
     box-shadow: 0 6px 18px -20px rgba(15, 23, 42, 0.8);
   }
 
-  .toc-toggle {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    text-align: left;
-    font: inherit;
+  .toc-desktop {
+    display: none;
   }
 
   .toc-title {
-    margin: 0;
-    display: block;
+    margin: 0 0 0.72rem;
     color: #334155;
     font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: 0.01em;
-  }
-
-  .toc-toggle-icon {
-    flex: none;
-    color: #0f766e;
-    font-size: 1rem;
-    line-height: 1;
-  }
-
-  .toc-panel {
-    padding-top: 0.72rem;
-  }
-
-  :global(.has-toc-js .toc-rail:not(.is-open) .toc-panel) {
-    display: none;
   }
 
   .toc-list {
@@ -452,34 +442,27 @@ const jsonLd = {
       width: min(1240px, 94vw);
     }
 
-    .article-layout-with-toc {
+    .article-with-toc .article-header,
+    .article-with-toc .cover-image {
+      width: calc(100% - 290px - 1.5rem);
+    }
+
+    .article-shell-with-toc {
       grid-template-columns: minmax(0, 1fr) 290px;
       column-gap: 1.5rem;
     }
 
-    .article-layout-with-toc > .article-header,
-    .article-layout-with-toc > .cover-image,
-    .article-layout-with-toc > .article-main {
-      grid-column: 1;
+    .toc-mobile {
+      display: none;
     }
 
-    .toc-rail {
-      grid-column: 2;
-      grid-row: 1 / span 3;
+    .toc-desktop {
+      display: block;
       position: sticky;
       top: 6.4rem;
       max-height: calc(100vh - 7.2rem);
       overflow: auto;
       overscroll-behavior: contain;
-    }
-
-    .toc-toggle {
-      display: none;
-    }
-
-    .toc-panel {
-      display: block;
-      padding-top: 0;
     }
   }
 </style>
