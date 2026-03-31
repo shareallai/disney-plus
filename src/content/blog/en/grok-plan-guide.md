@@ -280,7 +280,7 @@ If you have already decided to buy `SuperGrok`, it can be worth comparing a thir
 - 4-person shared plan: listed at **US$5.99**, which is more suitable for low-cost trial users
 
 Price data date: **March 31, 2026**. The numbers above are for reference only. Always confirm the latest price and available package options on the final checkout page.  
-Purchase link: <a href="https://familypro.io/en/products/grok?invite=7Dfd94eb" rel="nofollow">FamilyPro Super Grok purchase page (solo / 4-person shared)</a>
+Purchase link: <a href="https://familypro.io/en/products/grok?invite=7Dfd94eb">FamilyPro Super Grok purchase page (solo / 4-person shared)</a>
 
 For most buyers, this is not about counting plan names. It is a two-step decision:
 

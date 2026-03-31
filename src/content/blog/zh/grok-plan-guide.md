@@ -292,7 +292,7 @@ xAI 当前在官网与 App Store 都强调 `Voice Mode`、`Live Camera`。
 - 4 人拼车档位：标注价格为 **US$5.99**，更适合先低成本尝鲜
 
 价格数据日期：**2026-03-31**。以上仅供参考，实际价格和可选档位请以下单页为准。  
-购买入口：<a href="https://familypro.io/en/products/grok?invite=7Dfd94eb" rel="nofollow">FamilyPro Super Grok 购买页（独享 / 4 人拼车）</a>
+购买入口：<a href="https://familypro.io/en/products/grok?invite=7Dfd94eb">FamilyPro Super Grok 购买页（独享 / 4 人拼车）</a>
 
 对大多数人来说，真正的选择不是“套餐名越多越难选”，而是先回答这两句：
 

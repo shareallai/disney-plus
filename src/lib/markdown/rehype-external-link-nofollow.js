@@ -10,16 +10,39 @@ function toRelTokens(rel) {
   return [];
 }
 
-function isExternalHttpLink(href, siteOrigin) {
+function parseHttpUrl(href, siteOrigin) {
   if (typeof href !== 'string' || !/^(https?:)?\/\//i.test(href)) {
-    return false;
+    return null;
   }
 
   try {
-    return new URL(href, siteOrigin).origin !== siteOrigin;
+    const parsed = new URL(href, siteOrigin);
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+      return null;
+    }
+
+    return parsed;
   } catch {
-    return false;
+    return null;
   }
+}
+
+function normalizeOrigin(origin) {
+  try {
+    return new URL(origin).origin;
+  } catch {
+    return null;
+  }
+}
+
+function hasRelToken(tokens, token) {
+  const lowerToken = token.toLowerCase();
+  return tokens.some((value) => String(value).toLowerCase() === lowerToken);
+}
+
+function removeRelToken(tokens, token) {
+  const lowerToken = token.toLowerCase();
+  return tokens.filter((value) => String(value).toLowerCase() !== lowerToken);
 }
 
 function visit(node, callback) {
@@ -34,7 +57,21 @@ function visit(node, callback) {
   }
 }
 
-export function rehypeExternalLinkNofollow({ siteOrigin }) {
+export function rehypeExternalLinkNofollow({ siteOrigin, followOrigins = [] }) {
+  const normalizedSiteOrigin = normalizeOrigin(siteOrigin);
+  const allowedFollowOrigins = new Set();
+
+  if (normalizedSiteOrigin) {
+    allowedFollowOrigins.add(normalizedSiteOrigin);
+  }
+
+  for (const followOrigin of followOrigins) {
+    const normalizedFollowOrigin = normalizeOrigin(followOrigin);
+    if (normalizedFollowOrigin) {
+      allowedFollowOrigins.add(normalizedFollowOrigin);
+    }
+  }
+
   return (tree) => {
     visit(tree, (node) => {
       if (node?.type !== 'element' || node.tagName !== 'a') {
@@ -42,12 +79,26 @@ export function rehypeExternalLinkNofollow({ siteOrigin }) {
       }
 
       const href = node.properties?.href;
-      if (!isExternalHttpLink(href, siteOrigin)) {
+      const parsedUrl = parseHttpUrl(href, normalizedSiteOrigin);
+      if (!parsedUrl) {
         return;
       }
 
       const relTokens = toRelTokens(node.properties?.rel);
-      if (relTokens.includes('nofollow')) {
+      if (allowedFollowOrigins.has(parsedUrl.origin)) {
+        const cleanedRelTokens = removeRelToken(relTokens, 'nofollow');
+        node.properties = node.properties ?? {};
+
+        if (cleanedRelTokens.length > 0) {
+          node.properties.rel = cleanedRelTokens;
+        } else {
+          delete node.properties.rel;
+        }
+
+        return;
+      }
+
+      if (hasRelToken(relTokens, 'nofollow')) {
         return;
       }
 

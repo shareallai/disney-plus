@@ -3,11 +3,11 @@ locale: en
 translationKey: codex-claude-cursor-instructions-guide
 title: "Codex vs Claude Code vs Cursor: Where Project Rules Actually Go"
 headline: AGENTS.md, CLAUDE.md, and Cursor Rules, explained
-description: Official docs checked March 25, 2026. This guide explains where Codex, Claude Code, and Cursor expect project rules, skills, and user-level config.
-summary: If you keep mixing up AGENTS.md, CLAUDE.md, .cursor/rules, and skills, this guide breaks down what each layer is for, when it loads, and how to map one workflow across all three tools.
+description: Official docs checked March 31, 2026. This guide explains where Codex, Claude Code, and Cursor expect project rules, skills, and user-level config.
+summary: If you keep mixing up AGENTS.md, CLAUDE.md, .cursor/rules, and skills, this guide clarifies what each layer does, when it loads, and how to map one workflow across all three tools.
 category: AI Tooling
 pubDate: 2026-03-25
-updatedDate: 2026-03-25
+updatedDate: 2026-03-31
 author: Mark
 service: General
 tags:
@@ -20,7 +20,7 @@ tags:
 draft: false
 ---
 
-If you work across Codex, Claude Code, and Cursor, it is very easy to blur together a few similar-looking files: `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/*.mdc`, `SKILL.md`, and even older folders like `.claude/commands/*.md`. They all look like "instructions for the agent," but they do not play the same role.
+If you work across Codex, Claude Code, and Cursor, it is easy to blur together a few similar-looking files: `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/*.mdc`, `SKILL.md`, and older folders like `.claude/commands/*.md`. They all look like "instructions for the agent," but they do not play the same role.
 
 The first thing to separate is not the filename. It is the **layer**:
 
@@ -28,7 +28,7 @@ The first thing to separate is not the filename. It is the **layer**:
 - Is this a task-specific SOP that should only load when relevant?
 - Or is it a user-level preference that belongs on one machine, not in the repo?
 
-This article is based on the official docs visible on **March 25, 2026**. The goal is simple: explain where Codex, Claude Code, and Cursor expect project-level instructions, how skills fit in, what loads by default, and what only loads on demand.
+This article is based on the official docs visible on **March 31, 2026**. The goal is simple: explain where Codex, Claude Code, and Cursor expect project-level instructions, how skills fit in, what loads by default, and what only loads on demand.
 
 ## Start with the short version
 
@@ -40,7 +40,7 @@ If you only want one table, make it this one:
 | Claude Code | `CLAUDE.md` or `.claude/CLAUDE.md` | `.claude/skills/<skill>/SKILL.md`; older `.claude/commands/*.md` still work | `~/.claude/CLAUDE.md` | `CLAUDE.md` is the main project memory entry point; rules and skills split work by scope |
 | Cursor | `.cursor/rules/*.mdc`; root `AGENTS.md` is also supported as a simpler option | Skills / Agents / Plugins are separate capability layers | Mostly User Rules in Cursor settings | Rules are still Cursor's native project constraint system; `AGENTS.md` is more of a lightweight shortcut |
 
-If you compress it even further:
+If you compress it into four bullets:
 
 - Want Codex rules to apply by default? Put them in `AGENTS.md`
 - Want Claude Code rules to apply by default? Put them in `CLAUDE.md`
@@ -49,7 +49,7 @@ If you compress it even further:
 
 ## 1. Separate the three layers first
 
-Most confusion comes from mixing three different things together.
+Most confusion comes from mixing three different layers together.
 
 ### 1.1 Main project instructions
 
@@ -97,7 +97,7 @@ Codex is the cleanest system to summarize because the official docs are explicit
 
 ### 2.1 `AGENTS.md` is part of startup context
 
-OpenAI's docs describe `AGENTS.md` as something Codex reads before starting work, and not just from one fixed location.
+OpenAI's docs describe `AGENTS.md` as something Codex reads before starting work, and not from only one fixed location.
 
 The practical model looks like this:
 
@@ -105,7 +105,7 @@ The practical model looks like this:
 - project scope: it walks from the project root toward the current working directory, checking for `AGENTS.override.md` or `AGENTS.md`
 - more specific files closer to your current directory take precedence
 
-That is why `AGENTS.md` is not a backup note. It is the place for repo-level instructions that really should apply by default.
+That is why `AGENTS.md` is not a backup note. It is where repo-level instructions that should apply by default belong.
 
 ### 2.2 Skills are not fully loaded up front
 
@@ -128,7 +128,7 @@ This is one of the easier mistakes to make.
 
 Real repositories often contain names like `AGENT.md`, `.agents.md`, `TEAM_GUIDE.md`, or other house conventions. That does not mean the official Codex project instruction filename changed.
 
-As of **March 25, 2026**, the official Codex project instruction filename is still `AGENTS.md`.
+As of **March 31, 2026**, the official Codex project instruction filename is still `AGENTS.md`.
 
 ## 3. Claude Code: `CLAUDE.md` is the project memory entry point, with rules and skills around it
 
@@ -149,9 +149,9 @@ That design has a practical consequence: in Claude Code, the effective project s
 
 ### 3.2 `.claude/rules/` is for modular project rules
 
-Claude Code now officially supports `.claude/rules/` for splitting project instructions into smaller files.
+Claude Code officially supports `.claude/rules/` for splitting project instructions into smaller files.
 
-That is useful when one big `CLAUDE.md` starts turning into a dumping ground. With `.claude/rules/`, you can separate testing rules, API rules, frontend rules, or security rules into distinct files.
+That is useful when one big `CLAUDE.md` starts turning into a dumping ground. With `.claude/rules/`, you can split testing rules, API rules, frontend rules, and security rules into distinct files.
 
 The main behavior to remember is:
 
@@ -188,7 +188,7 @@ But there is still an important detail: Anthropic explicitly says `CLAUDE.md` co
 
 ## 4. Cursor: think "Rules first," not "just another AGENTS.md system"
 
-Cursor is the easiest one to misread because it also talks about rules, agents, and skills, which makes people want to force it into the same naming model as Codex or Claude Code.
+Cursor is easy to misread because it also talks about rules, agents, and skills, which makes people want to force it into the same naming model as Codex or Claude Code.
 
 But if the question is "Where should project-level constraints live?", the safest starting point is still: **Cursor Rules.**
 
@@ -227,7 +227,7 @@ That does **not** mean Rules stopped mattering. It means Cursor gives you two le
 - `AGENTS.md` for a simpler single-file setup
 - `.cursor/rules/*.mdc` for the more native, scoped, metadata-friendly rules system
 
-There is one more useful detail here: Cursor's CLI docs also say the CLI reads project-root `AGENTS.md` and `CLAUDE.md` as rules. So if you are reusing instruction files across tools, Cursor is not completely blind to those names. It just still treats Rules as its native rule center.
+There is one more useful detail here: Cursor's CLI docs also say the CLI reads project-root `AGENTS.md` and `CLAUDE.md` as rules. So if you are reusing instruction files across tools, Cursor is not blind to those names. It still treats Rules as its native rule center.
 
 ## 5. The four things people mix up most often
 
@@ -235,7 +235,7 @@ There is one more useful detail here: Cursor's CLI docs also say the CLI reads p
 
 This is the most common mistake.
 
-People write a skill and expect it to behave like `AGENTS.md` or `CLAUDE.md`, then wonder why it does not always fire.
+People write a skill and expect it to behave like `AGENTS.md` or `CLAUDE.md`, then wonder why it does not always trigger.
 
 Across all three tools, the practical split is similar:
 

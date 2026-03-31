@@ -15,6 +15,14 @@ export default defineConfig({
   base: isGitHubActions ? productionBase : '/',
   integrations: [sitemap()],
   markdown: {
-    rehypePlugins: [[rehypeExternalLinkNofollow, { siteOrigin: new URL(site).origin }]],
+    rehypePlugins: [
+      [
+        rehypeExternalLinkNofollow,
+        {
+          siteOrigin: new URL(site).origin,
+          followOrigins: ['https://familypro.io'],
+        },
+      ],
+    ],
   },
 });
