@@ -16,6 +16,7 @@ Use this reference when producing another language version of an article or loca
 - CTA and article intent
 - `translationKey`
 - Any translated/localized file you edit should sync `updatedDate` to today's date (`YYYY-MM-DD`).
+- If the post has explicit freshness dates (`as of`, `last checked on`, `截至`, `最后核对日期`), update and align those dates across all edited language versions.
 - If the post includes reference links, each language version should end with a localized final reference section:
   - non-Chinese: `## References`
   - Chinese: `## 官方参考`

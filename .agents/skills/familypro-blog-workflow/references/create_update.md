@@ -16,6 +16,7 @@ Use this reference when creating a new post, rewriting an existing one, expandin
    - `headline`: optional visible `h1` when wording should differ slightly from `title`
    - `description` and `summary`: concise, readable, and aligned with the actual article
    - `updatedDate`: every blog edit must sync `updatedDate` to today's date (`YYYY-MM-DD`)
+   - If the post includes explicit freshness dates (`as of`, `last checked on`, `截至`, `最后核对日期`), sync those markers to the current verification date in every edited language file.
    - Keep `title`/`headline` semantically aligned with the same core keyword so the search promise and page promise match.
 4. Outline before drafting.
    - Decide the article argument/order first.
@@ -38,6 +39,7 @@ Use this reference when creating a new post, rewriting an existing one, expandin
      - Chinese: `## 官方参考`
 7. Build and inspect.
    - Run `npm run sync:updated-date` after blog edits.
+   - If explicit freshness dates exist in the post, verify those date strings were updated consistently in all edited language variants.
    - Run `npm run check:references` when the post cites references.
    - Run `npm run build` before finishing.
 8. Post-publish SEO sanity check (when Search Console is available).

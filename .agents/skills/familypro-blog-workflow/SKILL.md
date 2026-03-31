@@ -41,6 +41,7 @@ You may need more than one reference file, but only load the ones relevant to th
 - For writing/rewriting/localization tasks in any language, apply the default checklist in `references/language-clarity.md` unless the user requests a specific voice that conflicts with it.
 - Preserve shared facts, product claims, and `translationKey` consistency across languages.
 - Any blog file edit (frontmatter or body) must sync `updatedDate` to the current date (`YYYY-MM-DD`).
+- If an edited post contains explicit freshness markers in frontmatter/body (for example `as of`, `last checked on`, `截至`, `最后核对日期`), sync those dates to the current verification date and keep wording consistent across language variants.
 - If facts, commands, links, or product behavior may have changed, verify them before writing.
 - If a post includes reference links, it must end with a reference section:
   - `## References` for non-Chinese posts
@@ -54,5 +55,6 @@ You may need more than one reference file, but only load the ones relevant to th
 - After content changes, run `npm run build`.
 - For posts with reference links, run `npm run check:references` to verify the final reference section exists and includes cited references.
 - If `title` or `description` was reviewed or edited, measure length explicitly against the locale-specific hard caps before finishing.
+- If the edited post includes explicit freshness dates, verify all in-article date markers were updated consistently in each edited language file.
 - If `title`, `headline`, `description`, canonical, hreflang, or structured data changed, inspect generated output or built HTML.
 - If review is requested, validate by citing concrete file paths and line numbers.

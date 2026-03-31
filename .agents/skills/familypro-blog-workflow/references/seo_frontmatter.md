@@ -9,6 +9,7 @@ Use this reference when adjusting `title`, `headline`, `description`, `summary`,
 - `description`: search/social summary
 - `summary`: on-page short intro block under the article header
 - Any edit to `title` / `headline` / `description` / `summary` must sync `updatedDate` to today (`YYYY-MM-DD`)
+- If the article includes explicit freshness labels (`as of`, `last checked on`, `截至`, `最后核对日期`), sync those date markers to the current verification date when you edit SEO-facing copy.
 
 ## Title and headline rules
 
@@ -60,6 +61,10 @@ Inspect built output when changing any of the following:
 - canonical-sensitive page logic
 - hreflang-sensitive content availability
 - structured-data-relevant article metadata
+
+Also verify in-file explicit freshness dates when any SEO-facing copy is edited:
+
+- Intro/body/reference date markers (`as of`, `last checked on`, `截至`, `最后核对日期`) should be updated consistently in each edited language file.
 
 If available, validate these post-build with Search Console:
 
