@@ -465,11 +465,17 @@ Project Genie 是 `Ultra` 的实验型研究原型，官方定义是 `text and i
 - 已经知道自己会天天用 Gemini、NotebookLM、Flow，或者你是开发者：直接 `Pro`
 - 只有当你明确需要 `Project Mariner / Project Genie / 超高 AI credits / Ultra 独占能力` 时，再上 `Ultra`
 
+如果你已经确定会买 `Google AI Plus`，也更看重长期成本，这里有一个可选购买渠道（来自第三方平台 **FamilyPro**，非 Google 官方售卖渠道）：
+
+- [Google AI Plus 年包（12 美元）](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
+
+价格信息说明（数据日期：**2026-03-31**，仅供参考）：该第三方商品当前标价为 **12 美元 / 12 个月**，提供 **1 个月质保**（质保期内如遇账号问题可申请换号）。如果完整使用 12 个月，折算约 **1 美元 / 月**。下单前请以页面实时显示的地区可用性、库存状态和售后条款为准。
+
 而且一定要记住：Google 官方已经明确说了，很多额度会随着容量、地区和实验状态变化。买之前，最好回到自己的 Google One 页面，再看一眼最新权益。
 
 ## 官方参考
 
-本文主要基于以下 Google 官方页面整理，最后核对日期为 **2026 年 3 月 31 日**：
+本文主要基于以下 Google 官方页面整理（并附可选购买链接），最后核对日期为 **2026 年 3 月 31 日**：
 
 - [Google AI Plans 官方套餐页](https://one.google.com/about/google-ai-plans/)
 - [Google AI Plus 扩展公告](https://blog.google/products-and-platforms/products/google-one/google-ai-plus-availability/)
@@ -483,3 +489,4 @@ Project Genie 是 `Ultra` 的实验型研究原型，官方定义是 `text and i
 - [Upgrade NotebookLM](https://support.google.com/notebooklm/answer/16213268)
 - [Use Gemini 3 Pro and Nano Banana Pro in AI Mode](https://support.google.com/websearch/answer/16011537)
 - [Generate and edit images in AI Mode with Nano Banana Pro](https://support.google.com/websearch/answer/16649374)
+- [FamilyPro 第三方平台：Google AI Plus 年包（可选购买链接）](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
