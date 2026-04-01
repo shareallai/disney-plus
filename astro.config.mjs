@@ -1,6 +1,5 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
 import { rehypeExternalLinkNofollow } from './src/lib/markdown/rehype-external-link-nofollow.js';
 
 const repository = process.env.GITHUB_REPOSITORY ?? 'shareallai/familypro';
@@ -13,7 +12,6 @@ const productionBase = isUserSiteRepo ? '/' : `/${repo}`;
 export default defineConfig({
   site,
   base: isGitHubActions ? productionBase : '/',
-  integrations: [sitemap()],
   markdown: {
     rehypePlugins: [
       [
