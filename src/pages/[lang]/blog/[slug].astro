@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import PostComments from '../../../components/PostComments.astro';
+import PostCardList from '../../../components/PostCardList.astro';
 import {
   DEFAULT_LANG,
   collectSiteLangs,
@@ -15,6 +16,7 @@ import {
 type TranslationRef = { lang: Lang; slug: string };
 
 export async function getStaticPaths() {
+  const MAX_RELATED_POSTS = 4;
   const getPostSlug = (id: string) => id.split('/').pop() ?? id;
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   const byTranslation = new Map<string, CollectionEntry<'blog'>[]>();
@@ -29,10 +31,18 @@ export async function getStaticPaths() {
       lang: item.data.locale,
       slug: getPostSlug(item.id),
     }));
+    const relatedPosts = Array.from(new Set(post.data.relatedTranslationKeys))
+      .filter((translationKey) => translationKey !== post.data.translationKey)
+      .map((translationKey) => {
+        const candidates = byTranslation.get(translationKey) ?? [];
+        return candidates.find((candidate) => candidate.data.locale === post.data.locale);
+      })
+      .filter((item): item is CollectionEntry<'blog'> => Boolean(item))
+      .slice(0, MAX_RELATED_POSTS);
 
     return {
       params: { lang: post.data.locale, slug: getPostSlug(post.id) },
-      props: { post, translations },
+      props: { post, translations, relatedPosts },
     };
   });
 }
@@ -40,9 +50,10 @@ export async function getStaticPaths() {
 interface Props {
   post: CollectionEntry<'blog'>;
   translations: TranslationRef[];
+  relatedPosts: CollectionEntry<'blog'>[];
 }
 
-const { post, translations } = Astro.props as Props;
+const { post, translations, relatedPosts } = Astro.props as Props;
 const currentLang = post.data.locale;
 const ui = getUi(currentLang);
 const localeCode = getLocaleCode(currentLang);
@@ -71,13 +82,35 @@ metaParts.push(`${ui.articleBy} ${post.data.author}`);
 const rawBaseUrl = import.meta.env.BASE_URL;
 const baseUrl = rawBaseUrl.endsWith('/') ? rawBaseUrl : `${rawBaseUrl}/`;
 const siteBase = Astro.site ?? new URL(Astro.url.origin);
+const toCoverImageSrc = (src?: string) =>
+  src ? (/^https?:\/\//.test(src) ? src : `${baseUrl}${src.replace(/^\/+/, '')}`) : undefined;
 const currentSlug = getPostSlug(post.id);
 const canonical = new URL(`${baseUrl}${currentLang}/blog/${currentSlug}/`, siteBase).toString();
-const coverImageSrc = post.data.coverImage
-  ? /^https?:\/\//.test(post.data.coverImage)
-    ? post.data.coverImage
-    : `${baseUrl}${post.data.coverImage.replace(/^\/+/, '')}`
-  : undefined;
+const coverImageSrc = toCoverImageSrc(post.data.coverImage);
+const relatedItems = relatedPosts.map((relatedPost) => {
+  const relatedPublishedAt = relatedPost.data.pubDate;
+  const relatedModifiedAt = relatedPost.data.updatedDate ?? relatedPublishedAt;
+  const relatedPublishedDateText = relatedPublishedAt.toISOString().slice(0, 10);
+  const relatedModifiedDateText = relatedModifiedAt.toISOString().slice(0, 10);
+  const showRelatedUpdatedDate = relatedModifiedAt.getTime() > relatedPublishedAt.getTime();
+  const relatedMetaParts = [`${ui.publishedLabel} ${relatedPublishedDateText}`];
+  if (showRelatedUpdatedDate) {
+    relatedMetaParts.push(`${ui.updatedLabel} ${relatedModifiedDateText}`);
+  }
+  relatedMetaParts.push(relatedPost.data.service);
+  if (relatedPost.data.tags.length > 0) {
+    relatedMetaParts.push(relatedPost.data.tags.join(' / '));
+  }
+
+  return {
+    href: `${baseUrl}${currentLang}/blog/${getPostSlug(relatedPost.id)}/`,
+    title: relatedPost.data.title,
+    summary: relatedPost.data.summary,
+    category: relatedPost.data.category,
+    coverImageSrc: toCoverImageSrc(relatedPost.data.coverImage),
+    meta: relatedMetaParts.join(' · '),
+  };
+});
 
 const alternates = translations.map((item) => ({
   hrefLang: getLocaleCode(item.lang),
@@ -171,6 +204,13 @@ const jsonLd = {
         <section class="markdown-body article-main">
           <Content />
         </section>
+
+        {relatedItems.length > 0 && (
+          <section class="related-posts" aria-labelledby="related-posts-title">
+            <h2 id="related-posts-title" class="related-posts-title">{ui.relatedPosts}</h2>
+            <PostCardList items={relatedItems} titleTag="h3" />
+          </section>
+        )}
 
         <PostComments term={post.data.translationKey} lang={currentLang} />
       </div>
@@ -341,6 +381,14 @@ const jsonLd = {
     border: 1px solid #dbe5ef;
     border-radius: 1rem;
     padding: 1rem;
+  }
+
+  .related-posts {
+    margin-top: 1.3rem;
+  }
+
+  .related-posts-title {
+    margin: 0 0 0.8rem;
   }
 
   :global(.markdown-body .table-scroll) {

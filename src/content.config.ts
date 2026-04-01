@@ -22,6 +22,7 @@ const blog = defineCollection({
     author: z.string().default('Mark'),
     service: z.string().default('General'),
     tags: z.array(z.string()).default([]),
+    relatedTranslationKeys: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
 });

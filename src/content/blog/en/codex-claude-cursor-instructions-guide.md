@@ -7,7 +7,7 @@ description: Official docs checked March 31, 2026. This guide explains where Cod
 summary: If you keep mixing up AGENTS.md, CLAUDE.md, .cursor/rules, and skills, this guide clarifies what each layer does, when it loads, and how to map one workflow across all three tools.
 category: AI Tooling
 pubDate: 2026-03-25
-updatedDate: 2026-03-31
+updatedDate: 2026-04-01
 author: Mark
 service: General
 tags:
@@ -17,6 +17,10 @@ tags:
   - AGENTS.md
   - CLAUDE.md
   - Cursor Rules
+relatedTranslationKeys:
+  - openclaw-mac-codex-install-guide
+  - chatgpt-go-plus-pro-codex-api-guide
+  - google-ai-plan-guide
 draft: false
 ---
 

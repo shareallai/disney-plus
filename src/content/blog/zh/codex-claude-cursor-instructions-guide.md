@@ -7,7 +7,7 @@ description: 基于 2026 年 3 月 31 日官方文档，系统讲清 Codex、Cla
 summary: 如果你总在 AGENTS.md、CLAUDE.md、.cursor/rules、skills 之间反复混淆，这篇文章会把三套机制的职责边界、加载方式和迁移思路一次讲透。
 category: AI 工具教程
 pubDate: 2026-03-25
-updatedDate: 2026-03-31
+updatedDate: 2026-04-01
 author: Mark
 service: General
 tags:
@@ -17,6 +17,10 @@ tags:
   - AGENTS.md
   - CLAUDE.md
   - Cursor Rules
+relatedTranslationKeys:
+  - openclaw-mac-codex-install-guide
+  - chatgpt-go-plus-pro-codex-api-guide
+  - google-ai-plan-guide
 draft: false
 ---
 

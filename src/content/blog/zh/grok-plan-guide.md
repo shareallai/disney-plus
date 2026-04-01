@@ -7,7 +7,7 @@ description: 基于 2026 年 3 月 27 日可访问的 xAI 官网、X Help 与美
 summary: 如果你正在纠结 Grok 到底该买 X Premium、Premium+、SuperGrok Lite、SuperGrok 还是 SuperGrok Heavy，这篇文章会先把两条订阅线拆开，再讲清公开价格、能力边界和适合谁买。
 category: AI 订阅对比
 pubDate: 2026-03-26
-updatedDate: 2026-03-31
+updatedDate: 2026-04-01
 author: Mark
 service: Grok
 tags:
@@ -16,6 +16,9 @@ tags:
   - X Premium
   - SuperGrok
   - AI 订阅
+relatedTranslationKeys:
+  - google-ai-plan-guide
+  - chatgpt-go-plus-pro-codex-api-guide
 draft: false
 ---
 

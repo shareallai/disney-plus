@@ -7,7 +7,7 @@ description: Based on official Google pages checked on March 31, 2026, this guid
 summary: This guide compares Google AI Plus, Pro, and Ultra across pricing, storage, AI credits, and key services like Gemini, NotebookLM, Flow, Whisk, Jules, and Gemini CLI so you can choose the right tier.
 category: AI Subscription Comparisons
 pubDate: 2026-03-25
-updatedDate: 2026-03-31
+updatedDate: 2026-04-01
 author: Mark
 service: Google AI
 tags:
@@ -18,6 +18,10 @@ tags:
   - Flow
   - Jules
   - AI Subscription
+relatedTranslationKeys:
+  - chatgpt-go-plus-pro-codex-api-guide
+  - grok-plan-guide
+  - codex-claude-cursor-instructions-guide
 draft: false
 ---
 

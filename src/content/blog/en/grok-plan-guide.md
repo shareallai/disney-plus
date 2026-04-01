@@ -7,7 +7,7 @@ description: Checked against xAI pages, X Help, and US App Store data on March 2
 summary: If you are trying to decide between X Premium, Premium+, SuperGrok Lite, SuperGrok, and SuperGrok Heavy, this guide explains the two plan lines, the public pricing signals, the unclear parts, and who should buy each one.
 category: AI Subscription Comparisons
 pubDate: 2026-03-26
-updatedDate: 2026-03-31
+updatedDate: 2026-04-01
 author: Mark
 service: Grok
 tags:
@@ -16,6 +16,9 @@ tags:
   - X Premium
   - SuperGrok
   - AI Subscription
+relatedTranslationKeys:
+  - google-ai-plan-guide
+  - chatgpt-go-plus-pro-codex-api-guide
 draft: false
 ---
 

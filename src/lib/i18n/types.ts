@@ -6,6 +6,7 @@ export interface UiDictionary {
   heroTitle: string;
   heroDesc: string;
   latestPosts: string;
+  relatedPosts: string;
   noPosts: string;
   allPosts: string;
   footer: string;

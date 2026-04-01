@@ -7,7 +7,7 @@ description: 基于 2026 年 3 月 31 日 Google 官方页面，系统梳理 Goo
 summary: 这篇指南会对比 Google AI Plus、Pro、Ultra 的价格、存储、AI credits 与 Gemini、NotebookLM、Flow、Whisk、Jules、Gemini CLI 等关键能力，帮你判断哪一档更适合你。
 category: AI 订阅对比
 pubDate: 2026-03-25
-updatedDate: 2026-03-31
+updatedDate: 2026-04-01
 author: Mark
 service: Google AI
 tags:
@@ -18,6 +18,10 @@ tags:
   - Flow
   - Jules
   - AI 订阅
+relatedTranslationKeys:
+  - chatgpt-go-plus-pro-codex-api-guide
+  - grok-plan-guide
+  - codex-claude-cursor-instructions-guide
 draft: false
 ---
 
