@@ -3,11 +3,11 @@ locale: en
 translationKey: chatgpt-go-plus-pro-codex-api-guide
 title: "ChatGPT Go vs Plus vs Pro: Codex and API Billing Explained"
 headline: What are ChatGPT Go, Plus, and Pro? Codex and API explained
-description: Checked on March 31, 2026, this guide compares ChatGPT Go, Plus, and Pro, explains Codex access, and clarifies that API usage is billed separately.
+description: Checked on April 10, 2026, this guide compares ChatGPT Go, Plus, and Pro (including $100/$200 Pro), explains Codex access, and confirms API billing is separate.
 summary: If you are deciding between ChatGPT Go, Plus, and Pro, or you are unsure how Codex and the OpenAI API fit together, this guide gives you a fast and practical decision path.
 category: AI Subscription Comparisons
 pubDate: 2026-03-31
-updatedDate: 2026-04-01
+updatedDate: 2026-04-10
 author: Mark
 service: General
 tags:
@@ -33,7 +33,7 @@ If you are looking at OpenAI plans for the first time, four questions usually cr
 
 This post has one job: answer those questions clearly, so you can pick the right option in about 10 minutes.
 
-Scope note: all plan details in this article are based on official OpenAI pages visible on **2026-03-31**. Prices are shown in **USD** and are **for reference only**. Always confirm on your current checkout and billing pages.
+Scope note: all plan details in this article are based on official OpenAI pages visible on **2026-04-10**. Prices are shown in **USD** and are **for reference only**. Always confirm on your current checkout and billing pages.
 
 ## 1. Quick answer: four common questions, one framework
 
@@ -57,30 +57,31 @@ Treat Go, Plus, and Pro as three levels of the same product line. The real diffe
 | Plus | Higher limits and broader advanced features for heavy daily use | Individual users doing regular writing, analysis, learning, and research |
 | Pro | Highest limits and priority experience for very heavy use | High-frequency power users who care about limits and speed |
 
-As of 2026-03-31 on official pages:
+As of 2026-04-10 on official pages:
 
 - `Plus`: **$20/month** (help center)
-- `Pro`: **$200/month** (help center)
+- `Pro`: currently **two plans: $100/month and $200/month** (same Pro capability set, different usage headroom)
 - `Go`: defined as a low-cost tier; launch materials included a **US $8/month** reference, but Go pricing is region-dependent, so checkout is the final source
 
-Two details to keep in mind:
+Three details to keep in mind:
 
 - Go/Plus/Pro are monthly subscriptions; annual prepay is not currently offered.
+- The two Pro plans ($100 / $200) mainly differ by usage allowance (officially framed around roughly 5x vs 20x compared with Plus).
 - "Unlimited" on plan pages is not absolute unlimited use. It is still constrained by abuse guardrails and terms.
 
-## 3. Go vs Plus vs Pro limits (as of 2026-03-31)
+## 3. Go vs Plus vs Pro limits (as of 2026-04-10)
 
 OpenAI can adjust limits over time. The table below only includes differences explicitly shown on official pages.
 
 | Dimension | Go | Plus | Pro |
 | --- | --- | --- | --- |
-| Price (USD) | Low-cost tier (US launch reference `$8/month`; checkout final) | `$20/month` | `$200/month` |
+| Price (USD) | Low-cost tier (pricing display varies by region/currency; checkout final) | `$20/month` | `$100/month` or `$200/month` (roughly `5x / 20x` usage headroom vs Plus) |
 | GPT-5.3 message cap | Up to `160 messages / 3 hours` | Up to `160 messages / 3 hours` | GPT-5 family is `unlimited*` (abuse guardrails apply) |
 | Thinking cap | Can enable Thinking from the input `+` menu, up to `10 messages / 5 hours` | Can manually select GPT-5.4 Thinking, up to `3000 messages / week` | Includes GPT-5.4 Pro, GPT-5 family is `unlimited*` (abuse guardrails apply) |
 | Legacy models (for example 4o) | Not included | Expanded access included | Included, with higher limits |
 | Agent mode | Not included | Included, `40 requests / month` | Included, `400 requests / month` |
-| Sora | Not included | Included | Included, with extended access |
-| Voice | Included, but same limit class as Free | Voice conversations included | Advanced Voice `unlimited*`, plus higher video/screen share limits |
+| Sora | Not included | Included | Included, typically with higher priority and concurrency |
+| Voice | Included, but same limit class as Free | Included under subscriber voice limits | GPT-4o voice is `unlimited*` (abuse guardrails apply) |
 | Codex | Available for a limited time (official wording: `limited time`) | Included | Included |
 
 `*` Here, `unlimited` means high practical availability, not unconditional unlimited usage. Terms and system guardrails still apply.
@@ -119,7 +120,7 @@ That is why two people can both "use Codex" but see costs in different places.
 
 Its billing model is also different: API usage is generally pay-as-you-go (for example by token, request, or tool usage).
 
-Using official pricing visible on 2026-03-31 as a reference point:
+Using official pricing visible on 2026-04-10 as a reference point:
 
 - GPT-5.4 text input: about `2.50 USD / 1M tokens`
 - GPT-5.4 text output: about `15.00 USD / 1M tokens`
@@ -149,7 +150,7 @@ If you are still deciding, this simple path usually works:
 
 - Mostly personal chat and light tools: start with `Go`
 - Daily writing, analysis, learning, and research: choose `Plus` first
-- Very heavy, high-frequency usage with strong limit sensitivity: consider `Pro`
+- Very heavy, high-frequency usage with strong limit sensitivity: consider `Pro` (usually start with `$100`, then move to `$200` for sustained parallel heavy workflows)
 - Building your own product or automation with model calls: enable `API` separately, whether or not you subscribe to ChatGPT
 
 Three-line summary:
@@ -172,19 +173,23 @@ Yes. Go can enable Thinking from the input `+` menu, with an officially publishe
 
 Yes. Current public limits are Plus `40 / month` and Pro `400 / month`. If Agent is part of your daily workflow, the Pro gap is substantial.
 
-### 4) Pro says "unlimited." Is it truly unlimited?
+### 4) What is the practical difference between Pro `$100` and Pro `$200`?
+
+The practical difference is usage allowance, not whether core Pro capabilities exist. Both are Pro plans; in official language, `$100` targets serious weekly use while `$200` is for heavier, continuously parallel workloads.
+
+### 5) Pro says "unlimited." Is it truly unlimited?
 
 No. It does not mean unconditional infinite usage. Official language still ties usage to abuse guardrails and terms of use.
 
-### 5) What happens after I hit Go/Plus primary model limits?
+### 6) What happens after I hit Go/Plus primary model limits?
 
 After you hit the current rolling-window cap, usage moves to a mini model until reset. This is rolling-window logic, not midnight daily reset logic.
 
-### 6) I already pay for Plus/Pro. Do I still pay separately for API?
+### 7) I already pay for Plus/Pro. Do I still pay separately for API?
 
 Yes. ChatGPT subscriptions and API billing are separate systems, and subscription fees do not offset API call charges.
 
-### 7) Can I downgrade from Plus or Pro to Go?
+### 8) Can I downgrade from Plus or Pro to Go?
 
 Yes, you can switch plans. Official guidance indicates no prorated refund for the current cycle; the lower tier usually takes effect in the next billing cycle.
 
@@ -194,8 +199,8 @@ Yes, you can switch plans. Official guidance indicates no prorated refund for th
 - [ChatGPT Plans | Free, Go, Plus, Pro, Business, and Enterprise](https://chatgpt.com/pricing)
 - [What is ChatGPT Go?](https://help.openai.com/en/articles/11989085-what-is-chatgpt-go)
 - [What is ChatGPT Plus?](https://help.openai.com/en/articles/6950777-what-is-chatgpt-plus)
-- [What is ChatGPT Pro?](https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro)
-- [GPT-5.3 and GPT-5.4 in ChatGPT](https://help.openai.com/en/articles/11909943-gpt-53-and-gpt-54-in-chatgpt)
+- [About ChatGPT Pro plans](https://help.openai.com/en/articles/9793128-what-is-chatgpt-pro)
+- [GPT-5.3 and GPT-5.4 in ChatGPT](https://help.openai.com/en/articles/11909943-gpt-5-in-chatgpt)
 - [ChatGPT agent (availability and monthly limits)](https://help.openai.com/en/articles/11752874-chatgpt-agent)
 - [Using Codex with your ChatGPT plan](https://help.openai.com/en/articles/11369540)
 - [Codex CLI (authentication and plan inclusion)](https://developers.openai.com/codex/cli)
