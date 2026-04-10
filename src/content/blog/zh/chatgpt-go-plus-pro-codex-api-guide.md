@@ -21,6 +21,11 @@ relatedTranslationKeys:
   - google-ai-plan-guide
   - codex-claude-cursor-instructions-guide
   - openclaw-mac-codex-install-guide
+topOffer:
+  title: ChatGPT 会员低至 5.5 USD（低于官方价格）
+  subtitle: 第三方购买路径可选 · 开通流程清晰 · 提供售后质保
+  buttonText: 查看 ChatGPT 购买方案
+  buttonLink: https://familypro.io/en/products/chatgpt?invite=7Dfd94eb
 draft: false
 ---
 

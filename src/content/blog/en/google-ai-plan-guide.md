@@ -7,7 +7,7 @@ description: Based on official Google pages checked on March 31, 2026, this guid
 summary: This guide compares Google AI Plus, Pro, and Ultra across pricing, storage, AI credits, and key services like Gemini, NotebookLM, Flow, Whisk, Jules, and Gemini CLI so you can choose the right tier.
 category: AI Subscription Comparisons
 pubDate: 2026-03-25
-updatedDate: 2026-04-01
+updatedDate: 2026-04-10
 author: Mark
 service: Google AI
 tags:
@@ -22,6 +22,11 @@ relatedTranslationKeys:
   - chatgpt-go-plus-pro-codex-api-guide
   - grok-plan-guide
   - codex-claude-cursor-instructions-guide
+topOffer:
+  title: Want a lower-cost way to start Google AI Plus?
+  subtitle: Optional third-party purchase path · Transparent pricing · After-sales support included
+  buttonText: View Google AI Plus purchase options
+  buttonLink: https://familypro.io/en/products/gemini?invite=7Dfd94eb
 draft: false
 ---
 
@@ -473,7 +478,7 @@ If you only want the easiest recommendation possible:
 
 If you have already decided to buy `Google AI Plus` and care about long-term cost, here is an optional purchase option (from the third-party platform **FamilyPro**, not an official Google sales channel):
 
-- [Google AI Plus annual package ($12)](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
+- [Google AI Plus option ($12)](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
 
 Price note (data date: **March 31, 2026**, for reference only): this third-party listing is currently priced at **$12 for 12 months** and includes a **1-month replacement warranty** (you can request an account replacement for eligible issues during that period). If you use the full 12 months, that works out to about **$1/month**. Before purchasing, confirm real-time stock, regional availability, and the latest after-sales terms on the product page.
 
@@ -495,4 +500,4 @@ This article is based primarily on the following official Google pages (plus one
 - [Upgrade NotebookLM](https://support.google.com/notebooklm/answer/16213268)
 - [Use Gemini 3 Pro and Nano Banana Pro in AI Mode](https://support.google.com/websearch/answer/16011537)
 - [Generate and edit images in AI Mode with Nano Banana Pro](https://support.google.com/websearch/answer/16649374)
-- [FamilyPro third-party platform: Google AI Plus annual package (optional purchase link)](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
+- [FamilyPro third-party platform: Google AI Plus (optional purchase link)](https://familypro.io/en/products/gemini?invite=7Dfd94eb)

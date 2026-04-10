@@ -7,7 +7,7 @@ description: "Compara X Premium, Premium+, SuperGrok Lite, SuperGrok y Heavy por
 summary: Si dudas entre X Premium, Premium+, SuperGrok Lite, SuperGrok y SuperGrok Heavy, esta guía separa primero las dos líneas de suscripción y luego aclara qué señales de precio son públicas, dónde termina lo realmente confirmado y qué plan encaja con tu uso real.
 category: Comparativas de suscripciones de IA
 pubDate: 2026-03-26
-updatedDate: 2026-04-07
+updatedDate: 2026-04-10
 author: Mark
 service: Grok
 tags:
@@ -16,6 +16,11 @@ tags:
   - X Premium
   - SuperGrok
   - Suscripción IA
+topOffer:
+  title: "¿Quieres probar Grok con menor costo? Desde USD 5.99/mes"
+  subtitle: "Precios transparentes · Activación rápida · Ideal para probar antes de decidir"
+  buttonText: "Ver opciones de compra de Grok"
+  buttonLink: https://familypro.io/en/products/grok?invite=7Dfd94eb
 draft: false
 ---
 

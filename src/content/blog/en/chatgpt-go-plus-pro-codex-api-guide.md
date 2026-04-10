@@ -21,6 +21,11 @@ relatedTranslationKeys:
   - google-ai-plan-guide
   - codex-claude-cursor-instructions-guide
   - openclaw-mac-codex-install-guide
+topOffer:
+  title: ChatGPT plans from USD 5.5 (below official pricing)
+  subtitle: Optional third-party purchase path · Clear onboarding flow · After-sales support included
+  buttonText: View ChatGPT purchase options
+  buttonLink: https://familypro.io/en/products/chatgpt?invite=7Dfd94eb
 draft: false
 ---
 

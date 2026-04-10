@@ -7,7 +7,7 @@ description: 基于 2026 年 3 月 31 日 Google 官方页面，系统梳理 Goo
 summary: 这篇指南会对比 Google AI Plus、Pro、Ultra 的价格、存储、AI credits 与 Gemini、NotebookLM、Flow、Whisk、Jules、Gemini CLI 等关键能力，帮你判断哪一档更适合你。
 category: AI 订阅对比
 pubDate: 2026-03-25
-updatedDate: 2026-04-01
+updatedDate: 2026-04-10
 author: Mark
 service: Google AI
 tags:
@@ -22,6 +22,11 @@ relatedTranslationKeys:
   - chatgpt-go-plus-pro-codex-api-guide
   - grok-plan-guide
   - codex-claude-cursor-instructions-guide
+topOffer:
+  title: 想更低成本开通 Google AI Plus？
+  subtitle: 第三方购买路径可选 · 价格透明 · 提供售后质保
+  buttonText: 查看 Google AI Plus 购买方案
+  buttonLink: https://familypro.io/en/products/gemini?invite=7Dfd94eb
 draft: false
 ---
 
@@ -471,7 +476,7 @@ Project Genie 是 `Ultra` 的实验型研究原型，官方定义是 `text and i
 
 如果你已经确定会买 `Google AI Plus`，也更看重长期成本，这里有一个可选购买渠道（来自第三方平台 **FamilyPro**，非 Google 官方售卖渠道）：
 
-- [Google AI Plus 年包（12 美元）](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
+- [Google AI Plus 套餐（12 美元）](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
 
 价格信息说明（数据日期：**2026-03-31**，仅供参考）：该第三方商品当前标价为 **12 美元 / 12 个月**，提供 **1 个月质保**（质保期内如遇账号问题可申请换号）。如果完整使用 12 个月，折算约 **1 美元 / 月**。下单前请以页面实时显示的地区可用性、库存状态和售后条款为准。
 
@@ -493,4 +498,4 @@ Project Genie 是 `Ultra` 的实验型研究原型，官方定义是 `text and i
 - [Upgrade NotebookLM](https://support.google.com/notebooklm/answer/16213268)
 - [Use Gemini 3 Pro and Nano Banana Pro in AI Mode](https://support.google.com/websearch/answer/16011537)
 - [Generate and edit images in AI Mode with Nano Banana Pro](https://support.google.com/websearch/answer/16649374)
-- [FamilyPro 第三方平台：Google AI Plus 年包（可选购买链接）](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
+- [FamilyPro 第三方平台：Google AI Plus（可选购买链接）](https://familypro.io/en/products/gemini?invite=7Dfd94eb)
