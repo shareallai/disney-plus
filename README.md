@@ -54,3 +54,45 @@ cp .env.example .env
 
 1. 一处配置就够：`owner/repo`（即 `GITHUB_REPOSITORY`）。
 2. `site/base` 由 `astro.config.mjs` 自动推导，`robots.txt` 使用静态文件（`public/robots.txt`）。
+
+## IndexNow（GitHub Pages 子路径站点）
+
+这个仓库已经把 IndexNow key 文件放在：
+
+- `public/8f2ac072a8574a3898dd1c19b001b894.txt`
+
+部署到 GitHub Pages 后，它会出现在：
+
+- `https://shareallai.github.io/familypro/8f2ac072a8574a3898dd1c19b001b894.txt`
+
+因为站点不是根域名根目录，而是在 `/familypro/` 子路径下，所以提交 IndexNow 时要显式带上 `keyLocation`。
+
+提交全站 sitemap：
+
+```bash
+python3 scripts/indexnow_submit.py --key 8f2ac072a8574a3898dd1c19b001b894
+```
+
+只提交变更页面：
+
+```bash
+python3 scripts/indexnow_submit.py \
+  --key 8f2ac072a8574a3898dd1c19b001b894 \
+  --url https://shareallai.github.io/familypro/zh/blog/grok-plan-guide/ \
+  --url https://shareallai.github.io/familypro/en/blog/grok-plan-guide/
+```
+
+预览将要发送的 JSON：
+
+```bash
+python3 scripts/indexnow_submit.py \
+  --key 8f2ac072a8574a3898dd1c19b001b894 \
+  --dry-run
+```
+
+脚本默认行为：
+
+- 未传 `--site-root` 时，会按 `GITHUB_REPOSITORY` 推导 GitHub Pages URL。
+- 未传 `--url` 或 `--url-file` 时，会自动读取 `<site-root>/sitemap.xml`。
+- 默认使用全局 IndexNow 端点：`https://api.indexnow.org/indexnow`。
+- 会校验提交 URL 必须属于 `keyLocation` 的路径作用域。对当前仓库来说，只允许提交 `https://shareallai.github.io/familypro/` 下的 URL。
