@@ -6,13 +6,12 @@ import { FOLLOW_ORIGINS } from './src/lib/markdown/follow-origins.js';
 const repository = process.env.GITHUB_REPOSITORY ?? 'shareallai/familypro';
 const [owner, repo] = repository.split('/');
 const isUserSiteRepo = repo === `${owner}.github.io`;
-const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 const site = `https://${owner}.github.io`;
 const productionBase = isUserSiteRepo ? '/' : `/${repo}`;
 
 export default defineConfig({
   site,
-  base: isGitHubActions ? productionBase : '/',
+  base: productionBase,
   prefetch: {
     defaultStrategy: 'hover',
   },

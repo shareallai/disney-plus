@@ -4,8 +4,9 @@ import { DEFAULT_LANG, collectSiteLangs } from '../lib/i18n';
 
 export const prerender = true;
 
-function toIsoDate(value?: Date): string | undefined {
-  return value?.toISOString();
+function toSitemapDate(value?: Date): string | undefined {
+  if (!value) return undefined;
+  return value.toISOString().split('T')[0];
 }
 
 function maxDate(a?: Date, b?: Date): Date | undefined {
@@ -54,7 +55,7 @@ export const GET: APIRoute = async ({ site, url }) => {
     const loc = new URL(path, siteUrl).toString();
     entries.push({
       loc,
-      lastmod: toIsoDate(lastmod),
+      lastmod: toSitemapDate(lastmod),
     });
   };
 
