@@ -1,22 +1,21 @@
 ---
 locale: zh
 translationKey: chatgpt-image-2-guide
-title: ChatGPT Images 2.0：计划额度、功能升级与 Nano Banana 对比
-headline: ChatGPT Images 2.0 指南：计划差异、提示词与选型
-description: 基于 2026-04-22 官方信息与社区实测，本文集中解答 ChatGPT Images 2.0 的计划可用性、额度口径、功能升级、新特性、提示词方法、benchmark 结果，以及与 Nano Banana 2/Pro 的场景化对比；价格与额度信息仅供参考。
-summary: ChatGPT Images 2.0 已面向 ChatGPT 用户发布。这篇从真实使用角度讲清谁能用、额度怎么理解、哪些能力明显升级、如何写提示词，以及和 Nano Banana 系列到底该怎么选。
+title: ChatGPT Images 2.5：新功能、使用方法与价格详解
+headline: ChatGPT Images 2.5 完整指南：新能力、用法与费用
+description: 了解 ChatGPT Images 2.5 的画质、精确编辑、模板与 Sketch 等新能力，掌握文字生成、局部改图和 API 调用方法，并看懂 ChatGPT 套餐与 Flare、Sunburst 的收费方式。
+summary: ChatGPT Images 2.5 把更快生成、精确编辑、模板和手绘草图带进同一套工作流。本文从实际使用出发，讲清普通用户怎么上手、开发者如何选择 Flare 或 Sunburst，以及费用如何计算。
 category: AI 工具观察
-pubDate: 2026-04-22
-updatedDate: 2026-04-22
+pubDate: 2026-09-09
+updatedDate: 2026-09-09
 author: Mark
 service: General
 tags:
-  - ChatGPT Images 2.0
-  - gpt-image-2
-  - Nano Banana 2
-  - Nano Banana Pro
+  - ChatGPT Images 2.5
+  - GPT-Image-2.5
   - AI 图像生成
-  - 提示词
+  - 图片编辑
+  - OpenAI API
 relatedTranslationKeys:
   - chatgpt-go-plus-pro-codex-api-guide
   - codex-claude-cursor-instructions-guide
@@ -28,176 +27,168 @@ topOffer:
 draft: false
 ---
 
-`ChatGPT Images 2.0`（核心模型 `gpt-image-2`）已正式发布。对多数用户而言，本次升级最直观的变化是：此前“可生成但难交付”的任务，如带文字海报、UI 示意图、信息图与多轮编辑，现阶段更容易一次获得可用结果。
+做一张带中文标题的活动海报、把商品照片换到新场景里，或者只修改人物衣服而不改变面孔，这些任务过去往往需要反复抽卡。2026 年 9 月 8 日发布的 **ChatGPT Images 2.5**，把升级重点放在更清晰的细节、更快的生成速度和更稳定的编辑上，同时增加了模板、Sketch 草图和评论式改图等入口。
 
-用户最关心的问题通常集中在一条主线：谁能用、额度如何理解、能力具体提升在哪里、提示词如何写得更稳，以及与 Nano Banana 系列应如何选型。本文按这一顺序展开。
+它并不是一个需要在 ChatGPT 对话里手动选择的聊天模型。普通用户直接使用 ChatGPT 的 Images 功能即可；开发者则可以通过 API 选择 `gpt-image-2.5-flare` 或 `gpt-image-2.5-sunburst`。
 
-涉及价格与额度的信息统一按 **2026-04-22** 的可查口径整理，**仅供参考**，请以账户页面实时显示为准。
+本文涉及的功能与 API 价格核对日期为 **2026-09-09**。价格和账户额度均可能调整，以下信息仅供参考，请以 ChatGPT 套餐页及 OpenAI API 控制台的实时显示为准。
 
-## 1. 发布概况
+## 1. ChatGPT Images 2.5 新在哪里
 
-可先对齐三项关键信息：
+这次更新的价值不只是“图片更漂亮”，而是让创建和修改图片的过程更接近一套可反复使用的工作流。
 
-1. OpenAI 在 2026-04-21 的 ChatGPT Release Notes 已写明：`ChatGPT Images 2.0` 已上线，且 ChatGPT 计划可用。
-2. 同一条更新写明：`images with thinking` 已推出，属于更高推理链路的图像模式。
-3. API 侧已经有 `gpt-image-2` 正式模型与快照（`gpt-image-2-2026-04-21`），说明产品端和开发端同时进入可用阶段。
+### 1.1 更快生成，也更重视细节
 
-这也解释了近期较为一致的使用感受：本次变化并非局部风格微调，而是任务完成度的整体提升。
+Images 2.5 改善了生成速度、画面清晰度和视觉保真度。人物、物品及较复杂场景中的细节更容易辨认，快速尝试不同构图时也不必等太久。
 
-## 2. 计划可用性与额度
+这类提升对社交媒体配图、商品场景图和创意草稿尤其直接：第一张图未必就是终稿，但更短的等待时间让连续试稿不再那么打断思路。
 
-### 2.1 可用计划
+### 1.2 连续编辑时更容易保留原图
 
-目前可按两层看：
+编辑图片最怕“改了背景，人物也换了一个”。Images 2.5 更强调在多轮修改中保留主体、面部特征和关键视觉元素。你可以要求它替换背景、调整衣服颜色或增加道具，同时明确哪些部分不能动。
 
-- `ChatGPT Images 2.0`：可在 ChatGPT 计划中使用。
-- `images with thinking`：按官方发布说明，面向付费计划；定价页的当前能力对比也体现为 Free/Go 无、Plus/Pro/Business/Enterprise 有。
+它仍不能替代人工校稿。涉及商标、精确商品结构、人物身份或密集文字时，终稿仍应逐项检查。
 
-### 2.2 额度口径
+### 1.3 在图片上评论，指出要改哪里
 
-官方公开口径是“不同档位有不同上限”，并未承诺固定张数。可先按以下方式理解：
+移动端支持打开图片后直接添加评论，用自然语言说明某个位置需要怎样修改。相比重新描述整张图片，这种方式更适合修正文案、颜色和局部物体，也能降低无关区域被重做的概率。
 
-- Free：图像能力有限且更慢
-- Go：比 Free 明显更多
-- Plus：更快、更复杂、更准确
-- Pro：更高上限与优先级（仍受公平使用/反滥用策略约束）
+### 1.4 用 Sketch 把难描述的构图画出来
 
-若需要参考“经验区间”，社区常见口径大致如下：
+有些空间关系很难用一段话说清楚。例如，你想让产品位于右下角，人物从左侧探出，顶部保留标题区。此时可以在移动端输入框键入 `@`，选择 Sketch，先画出简单布局，再补充风格和内容要求。
 
-- Free：约 2-3 张/24 小时
-- Go：约 20-30 张/天
-- Plus：约 50 张/3 小时
-- Pro：高上限，重度用户限制感较低
+草图不需要画得精致，它的作用是告诉 ChatGPT 元素在哪里、大小关系如何，而不是充当最终素材。
 
-上述数字应视作参考区间，而非保证值。实际额度会受到高峰时段、区域负载、任务复杂度与账号策略等因素影响。
+### 1.5 从模板开始，不必面对空白提示框
 
-### 2.3 选档建议
+Images 页面新增模板入口，可以从海报、周边商品等常见格式开始。选好模板后再替换主题、文字、颜色和视觉元素，适合没有成熟提示词但已经知道交付物类型的用户。
 
-- 轻度体验：Free
-- 周常创作：Go / Plus
-- 高频商业产出：Pro
+新版本还支持分享图片提示词。团队成员或读者可以基于同一提示词创建自己的版本，比截图复制一段不完整的描述更方便。
 
-## 3. 功能升级与新特性
+## 2. 在 ChatGPT 中怎么使用
 
-本次升级可概括为：AI 图像能力从“会画”进一步走向“可交付”，在文字与版式执行层面更接近可用的视觉生产工具。
+最简单的入口仍然是对话框。你可以直接说“生成一张图片”，也可以打开 Images 页面，从空白创作或模板开始。ChatGPT Images 2.5 面向各档 ChatGPT 用户提供，但不同计划的速度、额度及高级能力可能不同。
 
-感知最明显的能力变化主要包括：
+### 2.1 从文字生成新图
 
-- 多语言文字渲染更稳：中英混排、标题与按钮文案可读性明显提升
-- 结构化输出更强：信息图、演示视觉、图标网格、分镜页等任务更容易一次到位
-- 编辑能力更实用：参考图编辑、局部蒙版编辑、多图合成都更容易做到你想要的效果
-- 输出规格更可控：支持质量档位与更大尺寸范围，便于先草稿再终稿
-- Thinking 图像模式：复杂任务可用更长推理链路换更高完成度
-
-同时也要保留预期管理：官方文档仍提示了复杂任务延迟、精确排版和一致性的剩余难点，以及某些能力（比如透明背景）在 `gpt-image-2` 上的限制。
-
-## 4. 使用方法与提示词
-
-若希望生成结果更稳定，仅写“风格词”通常不够，更建议明确“交付约束”。高可用提示词通常包含 4 层：
-
-1. 任务目标：要做什么图、给谁用
-2. 结构要求：标题、副标题、按钮、布局关系
-3. 视觉约束：色彩、质感、风格、禁区
-4. 输出规格：尺寸、比例、质量档
-
-以下给出几组可直接改写的模板。
-
-营销海报模板：
+一个好用的提示词不需要堆满风格名词，但应交代用途、内容、构图、文字和不能出错的约束。例如：
 
 ```text
-生成一张 1536x1024 的活动海报。
-主标题：限时 48 小时｜新品首发
-副标题：4 月 30 日 20:00 开抢
-按钮文案：立即预约
-风格：真实商业摄影 + 轻 UI 叠层
-要求：中文清晰无错字，文字与背景对比明显，避免高饱和撞色。
+制作一张竖版咖啡新品海报，用于手机端社交媒体。
+画面中央是一杯透明玻璃杯装的冰拿铁，背景为暖灰色摄影棚，
+顶部保留约四分之一留白。
+
+主标题必须准确显示：秋日榛果拿铁
+副标题：本周五上市
+
+整体是克制的商业摄影风格，不使用卡通插画，不增加品牌 Logo，
+确保中文清晰可读。
 ```
 
-信息图模板：
+如果第一张图方向正确，不必把提示词推倒重来。继续说“保留杯子与光线，只把背景改成深绿色”“标题向上移动并缩小”，通常更容易逐步收敛。
+
+### 2.2 上传原图进行编辑
+
+上传图片后，先区分“必须保留”和“允许修改”的内容：
 
 ```text
-生成一张中英双语信息图，主题为 AI Image Trends 2026。
-风格：现代扁平化，清晰网格布局，标题 36pt，正文 14pt。
-要求：图标风格统一，图表数值标签清晰，中文与英文都可读。
+把背景替换为傍晚的城市露台，仅修改背景和环境光。
+完整保留人物的面孔、发型、姿势、衣服图案和画面裁切。
+让新增背景的光线方向与人物一致，不添加其他人物或文字。
 ```
 
-角色一致性模板：
+如果只需改变一个局部，可以在支持的移动端界面中对该位置添加评论。修改范围越明确，模型越容易理解哪些细节不应变化。
 
-```text
-生成同一角色的四视图设定：正面、侧面、背面、3/4 视角。
-角色设定：银发、赛博夹克、比例统一。
-要求：四张图面部特征和服装细节保持一致。
-```
+### 2.3 使用模板与 Sketch
 
-局部编辑模板（上传后）：
+已经知道要做“海报”或“商品周边”时，先选模板，再填内容，通常比从零描述版式更省力。只有构图很特殊、元素之间的位置关系难以表述时，才需要 Sketch。两者也可以组合：先用草图确定布局，再在后续对话中补充材质、灯光和文案。
 
-```text
-仅修改选区：背景改为雨夜赛博朋克街道，新增中文霓虹字“未来已来”。
-人物本体和姿势保持不变，整体光线统一。
-```
+## 3. 提示词怎样写得更稳
 
-## 5. Benchmark 解读
+提示词的重点不是越长越好，而是让模型知道什么决定成败。可以按下面的顺序写：
 
-截至本文更新时，Arena 公共榜单显示，`gpt-image-2 (medium)` 在两个关键榜单中均位列第一：
+1. **用途**：社交海报、商品主图、头像还是信息图。
+2. **主体与关系**：画面里有哪些人或物，它们分别在哪里。
+3. **视觉方向**：摄影或插画风格、光线、颜色和材质。
+4. **准确文字**：逐字列出必须出现的文案，并说明语言。
+5. **保留与禁止项**：哪些地方不能改，哪些元素不能出现。
+6. **输出要求**：横版或竖版、目标尺寸、格式和透明背景。
 
-- Text-to-Image：1512
-- Image Edit：1513
+不要一次要求模型同时重做十个互相关联的细节。先锁定构图和主体，再调整文字、颜色和局部元素，通常比每轮重新生成整张图更可控。
 
-同榜对照项中，`nano-banana-2` 与 `nano-banana-pro` 亦处于前列，但分数低于 `gpt-image-2`。这说明在公开盲评环境下，至少在当前公开数据阶段，GPT 侧在“综合偏好 + 编辑能力”上具备明显优势。
+## 4. 开发者怎么选择 Flare 与 Sunburst
 
-需要同时注意两点：
+API 提供两个 GPT-Image-2.5 模型。它们并不是简单的“便宜版”和“贵版”，因为官方公布的 Token 单价相同；差别主要在速度、能力侧重和一次任务实际消耗的 Token 数量。
 
-1. 榜单是动态的，分数会变。
-2. 榜单反映总体偏好，不等于你的业务场景 100% 同步。
-
-所以 benchmark 的正确用法是“辅助决策”，不是“替代测试”。
-
-## 6. GPT Image 2 与 Nano Banana 对比
-
-更实用的比较方式并非判断“谁绝对第一”，而是明确“不同任务由谁执行更能减少返工”。
-
-| 维度 | 更常见优势方 | 说明 |
+| 模型 | 官方定位 | 更适合的场景 |
 | --- | --- | --- |
-| 文字渲染与排版任务 | GPT Image 2 | 海报、UI、信息图、漫画对话框更稳 |
-| 结构化商业视觉 | GPT Image 2 | 版式执行和要素完整度更高 |
-| 编辑精度与一致性 | GPT Image 2 | 局部编辑、连续改图更容易收敛 |
-| 写实质感与速度 | Nano Banana 2 / Pro | 部分场景更“像照片”，NB2 迭代很快 |
-| 高强度创作链路 | 看入口与预算 | 两边都可做主力，关键看你在哪个平台交付 |
+| `gpt-image-2.5-flare` | 快速、高质量的日常图片生成 | 社交内容、视觉搜索、快速原型、批量生成 |
+| `gpt-image-2.5-sunburst` | 能力更强，重视精确生成与编辑 | 商业成品、商品图、品牌素材、复杂连续编辑 |
 
-可按以下简化决策执行：
+如果没有明确的高精度编辑需求，可以先用 Flare 做默认模型；当主体一致性、细节控制和最终成品质量比速度更重要时，再测试 Sunburst。最终选择应以自己的任务成功率、耗时和实际 usage 为准。
 
-- 做“带字 + 布局 + 交付”任务，先上 GPT Image 2
-- 做“快速概念 + 高真实感草图”任务，NB2/NB Pro 也值得并行
-- 真正的生产工作流，很多团队是两者混用：先快出概念，再在目标平台精修终稿
+### 4.1 使用 Image API 生成图片
 
-## 7. 社交平台反馈
+下面是最小化的 JavaScript 示例：
 
-X 与 Reddit 的高频反馈已趋于一致：
+```js
+import OpenAI from "openai";
+import fs from "node:fs";
 
-- 积极反馈：文字可读性显著改善，UI 示意图可用性提升，复杂任务返工减少
-- 保留意见：仍有个别解剖、颗粒与局部细节问题；在部分写实任务中，Nano Banana 仍有稳定支持者
+const openai = new OpenAI();
 
-这说明图像模型已进入“场景化选型”阶段。讨论焦点不再只是“谁最强”，而是“谁能在当前周期内更稳定地完成交付”。
+const result = await openai.images.generate({
+  model: "gpt-image-2.5-flare",
+  prompt: "一张极简风格的中文科技活动海报，深蓝背景，标题为：未来工作流",
+  quality: "medium",
+  size: "1024x1536",
+});
 
-## 8. 结论
+const image = Buffer.from(result.data[0].b64_json, "base64");
+fs.writeFileSync("poster.png", image);
+```
 
-`ChatGPT Images 2.0` 的这次升级，将图像模型从“灵感工具”进一步推向“生产工具”，尤其体现在文字、结构与编辑三方面。
+Image API 适合直接生成或编辑图片。若应用需要让主模型先理解用户意图、调用其他工具，再决定何时绘图，可以改用 Responses API，并在 `image_generation` 工具的 `model` 字段中指定 Flare 或 Sunburst。
 
-对于内容创作、运营、产品与设计协作岗位，这一版本已具备进入主流程测试的价值。最终选型不必“站队”，建议围绕高频任务进行实测，以返工成本与稳定性作为主要判断标准。
+两个模型都支持调整质量、尺寸、格式与压缩。质量档位包括 `low`、`medium`、`high`、`xhigh`、`max` 和 `auto`。规格越高，通常会消耗更多输出 Token，也可能增加等待时间。
+
+## 5. ChatGPT Images 2.5 价格怎么算
+
+这里需要先把两种使用方式分开：在 ChatGPT 里画图按套餐权益使用；通过 API 集成到自己的产品中，则按 Token 用量另外计费。购买 ChatGPT Plus 或 Pro 不会自动附送等额 API 余额。
+
+### 5.1 ChatGPT 用户：包含在套餐权益中
+
+普通用户不需要按每张图片单独结算。Images 2.5 已向各档 ChatGPT 用户推出，生成次数、速度和高峰期可用性会随计划与系统负载变化。若账户还没有显示新入口，也可能是分批上线尚未覆盖。
+
+OpenAI 没有为所有计划承诺长期固定的“每天可生成多少张”。因此，网上流传的固定张数只能当作特定时间和账户下的观察，不能据此购买套餐。选择时可以按使用强度判断：偶尔配图先用 Free；稳定创作再比较 Go 或 Plus；大量、高频生成才需要考虑 Pro 或团队计划。
+
+`Images with thinking` 等高级能力可能只对部分付费计划开放。实际套餐价格、区域税费、额度和功能，应以登录后显示的 ChatGPT 定价页为准。
+
+### 5.2 API 用户：按输入与输出 Token 计费
+
+截至 2026-09-09，Flare 和 Sunburst 的官方 Token 单价一致：
+
+| 计费项目 | 每 100 万 Token |
+| --- | ---: |
+| 文本输入 | 5 美元 |
+| 缓存文本输入 | 1.25 美元 |
+| 图片输入 | 8 美元 |
+| 缓存图片输入 | 2 美元 |
+| 图片输出 | 30 美元 |
+
+一次请求的总价由提示词文本、上传的参考图片和生成图片的输出 Token 共同组成。编辑已有图片时会产生图片输入费用；通过 Responses API 调用图片工具，还要加上主模型自身的 Token 费用。
+
+官方计算器给出的最低档示例中，图片输出成本可低至约 **0.00588 美元/张**，但这个数字不包含文本输入、参考图输入或流式中间图。实际单张费用取决于模型、尺寸和质量设置。Flare 与 Sunburst 即使单价相同，也可能因 Token 消耗不同而产生不同的单张成本，最可靠的做法是读取响应中的 `usage` 并用自己的真实提示词测算。
+
+## 6. 谁最值得尝试 Images 2.5
+
+如果工作经常涉及中文海报、商品场景替换、人物连续编辑或从草图快速做视觉方案，这一版值得直接试用。它的优势并不只是偶尔生成一张惊艳图片，而是让“生成—指出问题—局部修改—继续交付”的链路更顺畅。
+
+对普通用户，先在现有 ChatGPT 计划中完成三类真实任务，再决定是否需要更高套餐。对开发者，先用 Flare 验证速度与成本；只有在编辑精度或成品稳定性不够时，再把相同测试集交给 Sunburst。评价时记录成功率、返工次数、总耗时和 usage，往往比只比较单张样图更接近真实生产成本。
 
 ## 官方参考
 
-- [ChatGPT Release Notes（2026-04-21：ChatGPT Images 2.0）](https://help.openai.com/en/articles/6825453-chatgpt-can-now-generate-images)
-- [ChatGPT Pricing（Free/Go/Plus/Pro 功能对比）](https://chatgpt.com/pricing/)
-- [Introducing ChatGPT Go（Go 价格与“10x Free”口径）](https://openai.com/index/introducing-chatgpt-go/)
-- [OpenAI API Pricing（GPT-image-2 价格）](https://openai.com/api/pricing/)
-- [GPT Image 2 Model（API 模型与快照）](https://developers.openai.com/api/docs/models/gpt-image-2)
-- [Image Generation Guide（尺寸、质量、限制、成本）](https://developers.openai.com/api/docs/guides/image-generation)
-- [Arena Leaderboard（Text-to-Image / Image Edit）](https://arena.ai/leaderboard)
-- [Nano Banana Pro（Gemini 3 Pro Image）官方页](https://deepmind.google/models/gemini-image/pro/)
-- [Nano Banana 2 官方发布（Google Blog）](https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/)
-- [Nano Banana 2（Gemini 3.1 Flash Image）官方页](https://deepmind.google/models/gemini-image/flash/)
-- [Gemini 3.1 Flash Image Model Card（公开 benchmark 维度与结果）](https://deepmind.google/models/model-cards/gemini-3-1-flash-image/)
-- [Reddit：GPT Image v2 提示词与对比讨论（r/ChatGPT）](https://www.reddit.com/r/ChatGPT/comments/1snuu1r/i_created_a_github_repo_with_top_gpt_image_v2/)
-- [Reddit：GPT Image 2 vs Nano Banana Pro（r/OpenAI）](https://www.reddit.com/r/OpenAI/comments/1pixvun/gpt_image_2_vs_nano_banana_pro/)
-- [Reddit：Nano Banana 2 / Pro 默认策略争议（r/GeminiAI）](https://www.reddit.com/r/GeminiAI/comments/1rfh9ps/psa_google_is_forcing_the_inferior_nano_banana_2/)
+- [GPT-Image-2.5 Flare 模型文档](https://developers.openai.com/api/docs/models/gpt-image-2.5-flare)
+- [GPT-Image-2.5 Sunburst 模型文档](https://developers.openai.com/api/docs/models/gpt-image-2.5-sunburst)
+- [OpenAI 图片生成指南](https://developers.openai.com/api/docs/guides/image-generation)
+- [OpenAI API 定价](https://developers.openai.com/api/docs/pricing)
