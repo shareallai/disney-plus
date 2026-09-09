@@ -27,11 +27,20 @@ topOffer:
 draft: false
 ---
 
-做一张带中文标题的活动海报、把商品照片换到新场景里，或者只修改人物衣服而不改变面孔，这些任务过去往往需要反复抽卡。2026 年 9 月 8 日发布的 **ChatGPT Images 2.5**，把升级重点放在更清晰的细节、更快的生成速度和更稳定的编辑上，同时增加了模板、Sketch 草图和评论式改图等入口。
+OpenAI 于 2026 年 9 月 8 日发布了 **ChatGPT Images 2.5**。新版本生成图片更快，画面细节和多轮编辑的一致性也有所提升；同时，ChatGPT 还增加了图片模板、Sketch 草图和评论式编辑等创作方式。
 
-它并不是一个需要在 ChatGPT 对话里手动选择的聊天模型。普通用户直接使用 ChatGPT 的 Images 功能即可；开发者则可以通过 API 选择 `gpt-image-2.5-flare` 或 `gpt-image-2.5-sunburst`。
+对普通用户来说，这些变化意味着制作海报、商品图或修改照片时，可以更直观地表达构图和局部修改要求。开发者则可以通过 API 使用 `gpt-image-2.5-flare` 和 `gpt-image-2.5-sunburst`，分别应对快速生成与精细编辑等不同需求。
 
-本文涉及的功能与 API 价格核对日期为 **2026-09-09**。价格和账户额度均可能调整，以下信息仅供参考，请以 ChatGPT 套餐页及 OpenAI API 控制台的实时显示为准。
+下面将从新能力、实际用法和价格三个方面展开。本文涉及的功能与 API 价格核对日期为 **2026-09-09**；价格和账户额度可能调整，相关信息仅供参考，请以 ChatGPT 套餐页及 OpenAI API 控制台的实时显示为准。
+
+<figure>
+  <img
+    src="../../../blog/chatgpt-image-2-guide/chatgpt-images-2-5-features-api-pricing.png"
+    alt="ChatGPT Images 2.5 新能力与 API 价格信息图，包括更快生成、清晰细节、多轮一致编辑、评论式修改、模板与 Sketch，以及 Flare 和 Sunburst 的 Token 单价"
+    style="display:block; width:100%; height:auto; margin:0 auto;"
+  />
+  <figcaption>ChatGPT Images 2.5 新特点与 API 价格概览。价格核对日期为 2026-09-09，仅供参考，以 OpenAI 官方实时价格为准。</figcaption>
+</figure>
 
 ## 1. ChatGPT Images 2.5 新在哪里
 
